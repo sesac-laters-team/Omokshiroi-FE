@@ -1,0 +1,93 @@
+.App {
+    .RoomList {
+        padding: 2%;
+        background-color: lemonchiffon;
+        .logoImg {
+            width: 400px;
+            height: 80px;
+            background-color: gray;
+            margin: 20px;
+            margin-bottom: 40px;
+        }
+        .ShowRoomList {
+            margin: 20px;
+            .ListTitle {
+                display: flex;
+                background-color: antiquewhite;
+                padding: 10px;
+                width: 780px;
+                height: 90px;
+                border: 1px solid black;
+                justify-content: space-evenly;
+
+                div {
+
+                    text-align: center;
+                    font-weight: bold;
+                }
+                button {
+                    background-color: yellowgreen;
+                    
+                }
+
+                .CreateRoom {
+                    .modal {
+                        position: absolute;
+                        // display: none;
+    
+                        justify-content: center;
+                        top: 0;
+                        left: 0;
+    
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.4);
+                    }
+                    .modal_body {
+                        position:absolute;
+                        top:50%;
+                        left: 30%; 
+                        width:400px;
+                        height:600px;
+                        padding:40px;  
+                        text-align: center;
+                        background-color: rgb(255,255,255);
+                        border-radius:10px;
+                        box-shadow:0 2px 3px 0 rgba(34,36,38,0.15);
+                        transform:translateY(-50%);
+                        
+                        label {
+                            margin: 10px;
+                        }
+                        
+                    }
+                }
+            }
+
+            .ListRoom{
+                ul {
+                    margin: 40px;
+                    width: 400px;
+                    li {
+                        list-style: none;
+                        position: relative;
+                        margin:0 0 16px 2em; 
+                        padding:6px 18px;
+
+                        &:before {
+                            position: absolute;
+                            top: -16px;
+                            left: -30px;
+                            box-sizing:border-box;
+                            width:2em;
+                            margin-right:8px;
+                            color: rgb(176, 176, 255);
+                            font-size: 30px;
+                            text-align:center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
