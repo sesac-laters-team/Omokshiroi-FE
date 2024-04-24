@@ -14,7 +14,6 @@ export default function CreateRoom() {
         initSocketConnect();
     },[])
 
-
     const handleNewRoom = (e) => {
         e.preventDefault();
         const title = e.target.roomTitle.value;
@@ -63,4 +62,3 @@ export default function CreateRoom() {
             </div>
         </div>
     );
-}
