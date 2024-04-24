@@ -1,9 +1,10 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import RoomList from "./waitingRoom/RoomList";
 import GameContainer from "./inGame/GameContainer";
 
 import "../styles/WaitingRoom.scss";
+import WaitingRoomPage from "./page/WaitingRoomPage";
 
 function App() {
     return (
@@ -15,7 +16,7 @@ function App() {
                     <Link to="/game">Play Gomoku</Link>
                 </nav>
                 <Routes>
-                    <Route path="/" element={<RoomList />} />
+                    <Route path="/waiting" element={<WaitingRoomPage />} />
                     <Route path="/game" element={<GameContainer />} />
                 </Routes>
             </div>

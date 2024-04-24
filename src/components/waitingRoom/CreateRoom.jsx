@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import TimerRadio from "./TimerRadio";
 import TimerRadioGroup from "./TimerRadioGroup";
 
-export default function CreateRoom({ socket }) {
+export default function CreateRoom({ socket, setCreateModal }) {
     const navigate = useNavigate();
     const [pwInput, setPwInput] = useState("");
 
@@ -43,7 +43,8 @@ export default function CreateRoom({ socket }) {
         <div className="CreateRoom">
             {/* 모달 */}
             <div className="modal">
-                <div className="modal_body">
+                <div className="modal-body">
+                    <button onClick={() => setCreateModal(false)}>취소</button>
                     <form className="newRoom" onSubmit={handleNewRoom}>
                         <label>
                             방 제목
@@ -57,6 +58,7 @@ export default function CreateRoom({ socket }) {
                         <br />
                         <label>
                             시간 선택
+                            {/* 시간 선택 라디오 그룹 */}
                             <TimerRadioGroup label="시간선택">
                                 <TimerRadio
                                     name="time"
