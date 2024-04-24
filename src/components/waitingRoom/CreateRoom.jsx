@@ -13,17 +13,16 @@ export default function CreateRoom() {
     useEffect(() => {
         initSocketConnect();
     },[])
-    
 
     const handleNewRoom = (e) => {
         e.preventDefault();
         const title = e.target.roomTitle.value;
-        
+
         if (title.trim() == 0) {
             alert("방 제목이 공백입니다.");
             return;
         }
-        
+
         e.target.roomTitle.value = "";
         socket.emit("createRoom", title);
     }
@@ -63,4 +62,3 @@ export default function CreateRoom() {
             </div>
         </div>
     );
-}
