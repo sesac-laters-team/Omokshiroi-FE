@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import SideBarList from "./SideBarList";
 
 // props 변수 width 기본값을 줘서 오류 방지
-const Sidebar = ({ width = 280, children }) => {
+const Sidebar = ({ width = 280, children, socket }) => {
     const [isOpen, setOpen] = useState(false);
     const [xPosition, setX] = useState(-width);
     const side = useRef();
@@ -58,7 +58,7 @@ const Sidebar = ({ width = 280, children }) => {
                     )}
                 </button>
                 {/* 사이드 바 컴포넌트 내부 값이 구현되는 위치 */}
-                <SideBarList>{children}</SideBarList>
+                <SideBarList socket={socket}>{children}</SideBarList>
             </div>
         </div>
     );

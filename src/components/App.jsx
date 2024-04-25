@@ -13,6 +13,7 @@ function App() {
                 <nav>
                     <Link to="/">Home</Link>
                     <Link to="/game">Play Gomoku</Link>
+                    <Link to="/waiting">Waiting Room</Link>
                 </nav>
                 <Routes>
                     <Route path="/waiting" element={<WaitingRoomPage />} />

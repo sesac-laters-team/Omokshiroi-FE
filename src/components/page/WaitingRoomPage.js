@@ -65,7 +65,7 @@ export default function WaitingRoomPage() {
                 </div>
             )}
 
-            <Sidebar width={320}></Sidebar>
+            <Sidebar width={400} socket={socket}></Sidebar>
         </div>
     );
 }

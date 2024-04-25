@@ -1,6 +1,5 @@
-import CreateRoom from "./CreateRoom";
-import io from "socket.io-client";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function RoomList({ socket }) {
     const initSocketConnect = () => {
@@ -12,6 +11,7 @@ export default function RoomList({ socket }) {
     }, []);
 
     const [roomList, setRoomList] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // 새 방 만들기
@@ -31,6 +31,12 @@ export default function RoomList({ socket }) {
         });
     }, [roomList]);
 
+    const gameJoin = () => {
+        socket.emit("joinRoom", roomList.roomId); // 방 참가시 룸 아이디 보내기
+        console.log(roomList);
+        navigate("/game");
+    };
+
     return (
         <div className="RoomList">
             <section className="ShowRoomList">
@@ -42,7 +48,7 @@ export default function RoomList({ socket }) {
                             return (
                                 <li key={room.id}>
                                     <span>{room.title}</span>
-                                    <button>입장하기</button>
+                                    <button onClick={gameJoin}>입장하기</button>
                                 </li>
                             );
                         })}
