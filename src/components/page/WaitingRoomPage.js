@@ -33,34 +33,39 @@ export default function WaitingRoomPage() {
                     onClick={() => {
                         setCreateModal(true);
                     }}
-                    className="button btnPush btnJoin"
+                    className="btnRoom btnPush btnJoin"
                 >
                     방 만들기
                 </button>
-                {/* {createModal === true ? <CreateRoom socket={socket} /> : null} */}
-                {createModal && (
-                    <div
-                        className="modal-outside"
-                        ref={outside}
-                        onClick={(e) => {
-                            if (e.target === outside.current) {
-                                setCreateModal(false);
-                            }
-                        }}
-                    >
-                        <div className="create-modal">
-                            {createModal === true ? (
-                                <CreateRoom
-                                    socket={socket}
-                                    setCreateModal={setCreateModal}
-                                />
-                            ) : null}
-                        </div>
-                    </div>
-                )}
             </div>
-            <Sidebar width={320}></Sidebar>
+            <br />
+
+            {/* 방 리스트 */}
             <RoomList socket={socket}></RoomList>
+
+            {/* 모달 창 */}
+            {createModal && (
+                <div
+                    className="modal-outside"
+                    ref={outside}
+                    onClick={(e) => {
+                        if (e.target === outside.current) {
+                            setCreateModal(false);
+                        }
+                    }}
+                >
+                    <div className="create-modal">
+                        {createModal === true ? (
+                            <CreateRoom
+                                socket={socket}
+                                setCreateModal={setCreateModal}
+                            />
+                        ) : null}
+                    </div>
+                </div>
+            )}
+
+            <Sidebar width={320}></Sidebar>
         </div>
     );
 }

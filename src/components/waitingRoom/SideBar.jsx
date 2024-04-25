@@ -46,19 +46,19 @@ const Sidebar = ({ width = 280, children }) => {
                     transform: `translatex(${-xPosition}px)`,
                 }}
             >
-                <button onClick={() => toggleMenu()} className="button">
+                <button onClick={() => toggleMenu()} className="toggleBtn">
                     {isOpen ? (
                         <span>X</span>
                     ) : (
                         <img
                             src="images/logo_ssac.png"
-                            alr="contact open button"
+                            alt="contact open button"
                             className="openBtn"
                         />
                     )}
                 </button>
                 {/* 사이드 바 컴포넌트 내부 값이 구현되는 위치 */}
-                <SideBarList className="content">{children}</SideBarList>
+                <SideBarList>{children}</SideBarList>
             </div>
         </div>
     );
