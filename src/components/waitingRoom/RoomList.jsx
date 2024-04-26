@@ -1,41 +1,60 @@
-import CreateRoom from "./CreateRoom";
-// import io from "socket.io-client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function RoomList() {
-    // 방 만들기 모달 UI state
-    const [createRoom, setCreateRoom] = useState(false);
+export default function RoomList({ socket }) {
+    const initSocketConnect = () => {
+        if (!socket.connected) socket.connect();
+    };
 
-    // 방 목록 불러오기
-    // const [roomList, setRoomList] = useState([]);
+    useEffect(() => {
+        initSocketConnect();
+    }, []);
 
+    const [roomList, setRoomList] = useState([]);
+    const navigate = useNavigate();
 
-    // const RoomInfo = (room) => {
-    //     const handleEnterRoom = () => {
-    //         socket.emit("roomEnter", room.title);
+    useEffect(() => {
+        // 새 방 만들기
+        socket.on("newRoomList", (title, timer, roomPw, roomId) => {
+            const newRoomList = [
+                ...roomList,
+                {
+                    title: title,
+                    timer: timer,
+                    roomPw: roomPw,
+                    roomId: roomId,
+                },
+            ];
 
-    //     }
-    // }
+            console.log(`${title} 방 생성 완료`);
+            setRoomList(newRoomList);
+        });
+    }, [roomList]);
 
+    const gameJoin = () => {
+        socket.emit("joinRoom", roomList.roomId); // 방 참가시 룸 아이디 보내기
+        console.log(roomList);
+        navigate("/game");
+    };
 
-    console.log(createRoom);
     return (
         <div className="RoomList">
-            <div className="logoImg">로고</div>
             <section className="ShowRoomList">
-                <div className="ListTitle">  
-                    <div>방 목록</div>
-                    <button onClick={ () => {setCreateRoom(true)} }>방 만들기</button>
-                    {createRoom === true ? <CreateRoom /> : null}
-                </div>
                 <div className="ListRoom">
                     <ul>
-                        <li>왕초보</li>
-                        <li>오목한판</li>
-                        <li>들어오세용</li>
+                        <li>안녕하세용</li>
+                        {/* roomList 받아온 값만 돌려줌 */}
+                        {roomList.map((room) => {
+                            return (
+                                <li key={room.id}>
+                                    <span>{room.title}</span>
+                                    <button onClick={gameJoin}>입장하기</button>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
             </section>
         </div>
-    )
-} 
+    );
+}
