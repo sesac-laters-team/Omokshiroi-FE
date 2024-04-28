@@ -15,10 +15,15 @@ export default function CreateRoom({ socket, setCreateModal }) {
         const timer = e.target.time.value;
         const roomPw = e.target.roomPw.value;
 
+        // roomIndex 임의 지정
+        let roomIndex = 2;
+
         if (title.trim() == 0) {
             alert("방 제목은 공백일 수 없습니다.");
             return;
         }
+
+        roomIndex = roomIndex + 1;
 
         e.target.roomTitle.value = "";
         e.target.roomPw.value = "";
@@ -27,7 +32,14 @@ export default function CreateRoom({ socket, setCreateModal }) {
         const roomId = socket.id;
         console.log(roomId);
 
-        socket.emit("createRoom", title, timer, roomPw.trim(), roomId); // 방 생성자 socket.id
+        socket.emit(
+            "createRoom",
+            title,
+            timer,
+            roomPw.trim(),
+            roomId,
+            roomIndex,
+        ); // 방 생성자 socket.id
 
         navigate("/game");
     };
